@@ -43,23 +43,14 @@ To configure the buildpack add the following line to your `Staticfile`:
 root: dist
 ```
 
-### Basic authentication
+### Crowd authentication
 
-Protect your website with a user/password configured via environment variables.
+using https://github.com/kare/ngx_http_auth_crowd_module
+requiring three environment variables:
 
-![basic-auth](http://cl.ly/image/13402a2d0R1i/basicauth.png)
-
-Convert the username / password to the required format: http://www.htaccesstools.com/htpasswd-generator/
-
-For example, username `bob` and password `bob` becomes `bob:$apr1$DuUQEQp8$ZccZCHQElNSjrg.erwSFC0`.
-
-Create a file in the root of your application `Staticfile.auth`. This becomes the `.htpasswd` file for nginx to project your site. It can include one or more user/password lines.
-
-```
-bob:$apr1$DuUQEQp8$ZccZCHQElNSjrg.erwSFC0
-```
-
-Push your application to apply changes to basic auth. Remove the file and push to disable basic auth.
+    CROWD_URL=https://crowd.server.address.fi/crowd
+    CROWD_SOURCE=crowd-authenticator-username
+    CROWD_PASSWORD=secret
 
 ### Directory Index
 
