@@ -1,0 +1,34 @@
+#!/bin/sh
+
+apache_version=2.4.10
+
+sudo apt-get update
+sudo apt-get build-dep -y apache2
+
+src=~/src
+build=/app/apache2
+target=/vagrant/vendor
+
+rm -rf $build && mkdir -p $build
+mkdir -p $src
+cd $src
+
+wget http://mirror.arcor-online.net/www.apache.org//httpd/httpd-$apache_version.tar.gz
+tar xzvf httpd-$apache_version.tar.gz
+cd httpd-$apache_version
+
+./configure --prefix=$build
+make
+sudo make install
+
+sudo rm -rf /app/apache2/man
+sudo rm -rf /app/apache2/icons
+sudo rm -rf /app/apache2/htdocs/*
+sudo rm -rf /app/apache2/logs/*
+sudo rm -rf /app/apache2/cgi-bin/*
+
+
+# Archive it all up
+mkdir -p $target
+cd /app 
+tar -zcvpf $target/httpd-$apache_version.tar.gz apache2/
