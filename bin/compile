@@ -113,33 +113,6 @@ rm -rf /app/apache2/cgi-bin/*
 
 cp -ra /app/apache2/* $build_dir/
 
-cd $build_dir
+cp $compile_buildpack_bin/boot.sh $build_dir/
 
-# Alternate root location (default is root of project) for html/js/css
-# root: dist/
-if [[ "$(grep root: Staticfile)X" != "X" ]]; then
-  root_dir=$(grep root: Staticfile | sed -e 's/^root: *//')
-  status "Root folder $root_dir"
-else
-  status "Using root folder"
-fi
-root_dir=${root_dir:-.}
 
-status "Copying project files into htdocs/"
-mkdir -p $cache_dir/htdocs
-mv $root_dir/* $cache_dir/htdocs
-mv $cache_dir/htdocs .
-
-# if using root dir, then Staticfile* files would be accessible by nginx
-if [[ -f htdocs/Staticfile ]]; then
-  echo "Moving Staticfile away from public access" | indent
-  mv htdocs/Staticfile* .
-fi
-
-status "Setting up apache2"
-cd $build_dir
-cp -f $compile_buildpack_dir/conf/httpd.conf conf/httpd.conf
-
-[[ -f $build_dir/htdocs/httpd.conf ]] && mv $build_dir/htdocs/httpd.conf $build_dir/conf/httpd.conf
-
-cp $compile_buildpack_bin/boot.sh .
