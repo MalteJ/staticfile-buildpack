@@ -138,8 +138,8 @@ fi
 
 status "Setting up apache2"
 cd $build_dir
-cp -f $compile_buildpack_dir/conf/httpd.conf apache2/conf/httpd.conf
+cp -f $compile_buildpack_dir/conf/httpd.conf conf/httpd.conf
 
-[[ -f $build_dir/htdocs/httpd.conf ]] && mv $build_dir/htdocs/httpd.conf apache2/conf/httpd.conf
+[[ -f $build_dir/htdocs/httpd.conf ]] && mv $build_dir/htdocs/httpd.conf $build_dir/conf/httpd.conf
 
 cp $compile_buildpack_bin/boot.sh .
