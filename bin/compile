@@ -20,6 +20,8 @@ source $compile_buildpack_dir/bin/common.sh
 
 cd $cache_dir
 
+apt-get build-dep apache2
+
 wget http://mirror.arcor-online.net/www.apache.org//httpd/httpd-$apache_version.tar.gz
 wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-1.5.1.tar.gz
 wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-util-1.5.4.tar.gz
