@@ -137,7 +137,7 @@ if [[ -f htdocs/Staticfile ]]; then
 fi
 
 status "Setting up apache2"
-tar xzf $compile_apache_tgz
+cd /app
 cp -f $compile_buildpack_dir/conf/httpd.conf apache2/conf/httpd.conf
 
 [[ -f $build_dir/htdocs/httpd.conf ]] && mv $build_dir/htdocs/httpd.conf apache2/conf/httpd.conf
