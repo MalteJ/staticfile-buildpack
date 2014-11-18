@@ -3,7 +3,7 @@
 # https://github.com/cloudfoundry-community/nginx-buildpack#building-the-nginx-package
 
 pcre_version=8.35
-nginx_version=1.7.4
+nginx_version=1.7.7
 
 sudo apt-get update
 sudo apt-get install -fy build-essential zlib1g-dev
