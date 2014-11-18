@@ -16,16 +16,36 @@ mkdir -p $src
 cd $src
 
 wget http://mirror.arcor-online.net/www.apache.org//httpd/httpd-$apache_version.tar.gz
+wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-1.5.1.tar.gz
+wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-util-1.5.4.tar.gz
+
 tar xzvf httpd-$apache_version.tar.gz
+tar xzvf apr-1.5.1.tar.gz
+tar xzvf apr-util-1.5.4.tar.gz
+
+mkdir -p /app/apache2/libs
+
+cd apr-1.5.1
+./configure --prefix=/app/apache2/libs/apr
+make
+sudo make install
+cd ..
+
+cd apr-util-1.5.4
+./configure --prefix=/app/apache2/libs/apr-util --with-apr=/app/apache2/libs/apr
+make
+sudo make install
+cd ..
+
 cd httpd-$apache_version
 
-./configure --prefix=$build --libdir=$build/libs
+./configure --prefix=$build --with-apr=/app/apache2/libs/apr --with-apr-util=/app/apache2/libs/apr-util
 make
 sudo make install
 
-sudo mkdir -p $build/libs
+#sudo mkdir -p $build/libs
 
-sudo cp /usr/lib/x86_64-linux-gnu/libapr* $build/libs
+#sudo cp /usr/lib/x86_64-linux-gnu/libapr* $build/libs
 
 sudo rm -rf /app/apache2/man
 sudo rm -rf /app/apache2/icons

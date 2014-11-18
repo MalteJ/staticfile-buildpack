@@ -14,9 +14,6 @@
 
 export APP_ROOT=$HOME
 
-cp /app/apache2/libs/* /usr/lib/x86_64-linux-gnu/
-ldconfig
-
 conf_file=$APP_ROOT/apache2/conf/httpd.conf
 if [ -f $APP_ROOT/htdocs/httpd.conf ]
 then
