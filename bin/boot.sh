@@ -15,17 +15,18 @@ set -x
 export APP_ROOT=$HOME
 
 cd $APP_ROOT
+pwd
 ls -l
-ls -l apache2
+ls -l apache2/
 
-conf_file=$APP_ROOT/apache2/conf/httpd.conf
+conf_file=$APP_ROOT/apache2/config/httpd.conf
 if [ -f $APP_ROOT/htdocs/httpd.conf ]
 then
   conf_file=$APP_ROOT/htdocs/httpd.conf
 fi
 
-mv $conf_file $APP_ROOT/apache2/conf/orig.conf
-erb $APP_ROOT/apache2/conf/orig.conf > $APP_ROOT/apache2/conf/httpd.conf
+mv $conf_file $APP_ROOT/apache2/config/orig.conf
+erb $APP_ROOT/apache2/config/orig.conf > $APP_ROOT/apache2/config/httpd.conf
 
 # ------------------------------------------------------------------------------------------------
 
