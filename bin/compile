@@ -31,33 +31,29 @@ tar xzvf apr-util-1.5.4.tar.gz
 mkdir -p /app/apache2/libs
 
 cd apr-1.5.1
-./configure --prefix=/app/apache2/libs/apr --enable-static-support
+./configure --prefix=/app/apache2/libs/apr
 make
-sudo make install
+make install
 cd ..
 
 cd apr-util-1.5.4
 ./configure --prefix=/app/apache2/libs/apr-util --with-apr=/app/apache2/libs/apr --enable-static-support
 make
-sudo make install
+make install
 cd ..
 
 cd httpd-$apache_version
 
 ./configure --prefix=$build --with-apr=/app/apache2/libs/apr --with-apr-util=/app/apache2/libs/apr-util --enable-static-support
 make
-sudo make install
+make install
 cd ..
 
-#sudo mkdir -p $build/libs
-
-#sudo cp /usr/lib/x86_64-linux-gnu/libapr* $build/libs
-
-sudo rm -rf /app/apache2/man
-sudo rm -rf /app/apache2/icons
-sudo rm -rf /app/apache2/htdocs/*
-sudo rm -rf /app/apache2/logs/*
-sudo rm -rf /app/apache2/cgi-bin/*
+rm -rf /app/apache2/man
+rm -rf /app/apache2/icons
+rm -rf /app/apache2/htdocs/*
+rm -rf /app/apache2/logs/*
+rm -rf /app/apache2/cgi-bin/*
 
 cp -ra /app/apache2/* $build_dir/
 
