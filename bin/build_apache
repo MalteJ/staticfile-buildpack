@@ -17,7 +17,7 @@ wget http://mirror.arcor-online.net/www.apache.org//httpd/httpd-$apache_version.
 tar xzvf httpd-$apache_version.tar.gz
 cd httpd-$apache_version
 
-./configure --prefix=$build
+./configure --prefix=$build --enable-static-support
 make
 sudo make install
 
