@@ -14,6 +14,9 @@
 
 export APP_ROOT=$HOME
 
+cp /app/apache2/libs/* /usr/lib/x86_64-linux-gnu/
+ldconfig
+
 conf_file=$APP_ROOT/apache2/conf/httpd.conf
 if [ -f $APP_ROOT/htdocs/httpd.conf ]
 then
@@ -29,6 +32,6 @@ touch $APP_ROOT/apache2/logs/access.log
 touch $APP_ROOT/apache2/logs/error.log
 
 (tail -f -n 0 $APP_ROOT/apache2/logs/*.log &)
-exec $APP_ROOT/apache2/bin/httpd -D FOREGROUND 
+exec $APP_ROOT/apache2/bin/httpd -D FOREGROUND #-f $APP_ROOT/apache2/conf/httpd.conf
 
 # ------------------------------------------------------------------------------------------------
