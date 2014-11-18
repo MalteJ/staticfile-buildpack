@@ -46,7 +46,7 @@ DEFAULT_VERSION="8.34"
 dep_version=${VERSION:-$DEFAULT_VERSION}
 dep_dirname=pcre-${dep_version}
 dep_archive_name=${dep_dirname}.tar.gz
-dep_url=http://sourceforge.net/projects/pcre/files/pcre/${dep_version}/${dep_archive_name}
+dep_url=ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/${dep_archive_name}
 
 echo "-----> Building PCRE ${dep_version}..."
 
