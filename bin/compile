@@ -115,4 +115,3 @@ cp -ra /app/apache2 $build_dir/
 
 cp $compile_buildpack_bin/boot.sh $build_dir/
 
-
