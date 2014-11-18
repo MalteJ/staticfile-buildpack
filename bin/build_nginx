@@ -6,7 +6,7 @@ pcre_version=8.35
 nginx_version=1.7.7
 
 sudo apt-get update
-sudo apt-get install -fy build-essential zlib1g-dev
+sudo apt-get install -fy build-essential zlib1g-dev git libssl-dev libcurl3-dev
 
 src=~/src
 build=/app/nginx
@@ -26,11 +26,12 @@ sudo make install
 sudo ldconfig # this is important otherwise nginx will compile but fail to load
 
 cd $src
+git clone https://github.com/kare/ngx_http_auth_crowd_module.git
 wget http://nginx.org/download/nginx-$nginx_version.tar.gz
 tar -xvzf nginx-$nginx_version.tar.gz
 cd nginx-$nginx_version
 
-./configure --prefix=$build --with-http_ssl_module
+./configure --without-http_rewrite_module --add-module=../ngx_http_auth_crowd_module --prefix=$build --with-http_ssl_module
 make
 sudo make install
 
