@@ -87,7 +87,6 @@ wget http://mirror.arcor-online.net/www.apache.org//httpd/httpd-$apache_version.
 tar xzvf httpd-$apache_version.tar.gz
 cd httpd-$apache_version
 ./configure \
-    --enable-layout=GNU \
     --prefix=${OUT_PREFIX} \
     --with-pcre=${OUT_PREFIX}/libs \
     --with-z=${OUT_PREFIX}/libs \
@@ -100,6 +99,7 @@ cd httpd-$apache_version
     --enable-deflate \
     --with-apr=${OUT_PREFIX}/libs \
     --with-apr-util=${OUT_PREFIX}/libs
+#    --enable-layout=GNU \
 #    --with-included-apr \
 make
 make install -s
