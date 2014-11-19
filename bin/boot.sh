@@ -19,14 +19,14 @@ pwd
 ls -l
 ls -l apache2/
 
-conf_file=$APP_ROOT/apache2/config/httpd.conf
+conf_file=$APP_ROOT/apache2/conf/httpd.conf
 if [ -f $APP_ROOT/htdocs/httpd.conf ]
 then
   conf_file=$APP_ROOT/htdocs/httpd.conf
 fi
 
 mv $conf_file $APP_ROOT/apache2/orig.conf
-erb $APP_ROOT/apache2/orig.conf > $APP_ROOT/apache2/config/httpd.conf
+erb $APP_ROOT/apache2/orig.conf > $APP_ROOT/apache2/conf/httpd.conf
 
 # ------------------------------------------------------------------------------------------------
 
@@ -34,6 +34,6 @@ touch $APP_ROOT/apache2/logs/access.log
 touch $APP_ROOT/apache2/logs/error.log
 
 (tail -f -n 0 $APP_ROOT/apache2/logs/*.log &)
-exec $APP_ROOT/apache2/bin/httpd -D FOREGROUND -f $APP_ROOT/apache2/config/httpd.conf
+exec $APP_ROOT/apache2/bin/httpd -D FOREGROUND -f $APP_ROOT/apache2/conf/httpd.conf
 
 # ------------------------------------------------------------------------------------------------
