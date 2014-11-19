@@ -18,6 +18,7 @@ cd $APP_ROOT
 pwd
 ls -l
 ls -l apache2/
+ls -l apache2/bin/
 
 conf_file=$APP_ROOT/apache2/conf/httpd.conf
 if [ -f $APP_ROOT/htdocs/httpd.conf ]
