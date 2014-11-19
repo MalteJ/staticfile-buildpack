@@ -23,7 +23,7 @@ then
 fi
 
 mv $conf_file $APP_ROOT/apache2/orig.conf
-erb $APP_ROOT/apache2/orig.conf > $APP_ROOT/apache2/conf/httpd.conf
+erb $APP_ROOT/apache2/orig.conf > $conf_file
 
 cat $conf_file
 
