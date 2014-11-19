@@ -113,7 +113,7 @@ rm -rf /app/apache2/cgi-bin/*
 
 ls -l /app/apache2
 
-#mkdir -p /app/apache2/conf
+mkdir -p /app/apache2/conf
 cp $compile_buildpack_dir/conf/httpd.conf /app/apache2/conf/httpd.conf
 cp -ra /app/apache2 $build_dir/
 
