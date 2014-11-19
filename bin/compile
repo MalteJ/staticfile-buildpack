@@ -113,5 +113,6 @@ rm -rf /app/apache2/cgi-bin/*
 
 cp -ra /app/apache2 $build_dir/
 
+cp $compile_buildpack_dir/conf/httpd.conf $build_dir/apache2/config/httpd.conf
 cp $compile_buildpack_bin/boot.sh $build_dir/
 
