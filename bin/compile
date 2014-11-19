@@ -89,17 +89,16 @@ cd httpd-$apache_version
 ./configure \
     --prefix=${OUT_PREFIX} \
     --with-z=${OUT_PREFIX}/libs \
-    --without-pcre \
     --with-ssl \
     --with-mpm=event \
     --enable-mods-shared=all \
     --enable-deflate \
     --with-apr=${OUT_PREFIX}/libs \
-    --with-apr-util=${OUT_PREFIX}/libs
-#    --enable-proxy \
-#    --enable-proxy-fcgi \
-#    --enable-rewrite \
-#    --with-pcre=${OUT_PREFIX}/libs \
+    --with-apr-util=${OUT_PREFIX}/libs \
+    --enable-proxy \
+    --enable-proxy-fcgi \
+    --enable-rewrite \
+    --with-pcre=${OUT_PREFIX}/libs
 #    --enable-layout=GNU \
 #    --with-included-apr \
 make
