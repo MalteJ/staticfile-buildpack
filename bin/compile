@@ -111,8 +111,8 @@ rm -rf /app/apache2/htdocs/*
 rm -rf /app/apache2/logs/*
 rm -rf /app/apache2/cgi-bin/*
 
+cp $compile_buildpack_dir/conf/httpd.conf /app/apache2/conf/httpd.conf
 cp -ra /app/apache2 $build_dir/
 
-cp $compile_buildpack_dir/conf/httpd.conf $build_dir/apache2/conf/httpd.conf
 cp $compile_buildpack_bin/boot.sh $build_dir/
 
