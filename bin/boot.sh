@@ -11,9 +11,8 @@
 # either express or implied. See the License for the specific language governing permissions
 # and  limitations under the License.
 # ------------------------------------------------------------------------------------------------
-export APP_ROOT=$HOME
 
-cd $APP_ROOT
+export APP_ROOT=/app
 
 conf_file=$APP_ROOT/apache2/conf/httpd.conf
 if [ -f $APP_ROOT/htdocs/httpd.conf ]

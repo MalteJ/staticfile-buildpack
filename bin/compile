@@ -20,7 +20,7 @@ source $compile_buildpack_dir/bin/common.sh
 
 mkdir -p $cache_dir
 cd $cache_dir
-OUT_PREFIX=/home/vcap/apache2
+OUT_PREFIX=/app/apache2
 mkdir -p $OUT_PREFIX/libs
 
 # ZLIB
@@ -114,7 +114,7 @@ rm -rf $OUT_PREFIX/cgi-bin/*
 
 mkdir -p $OUT_PREFIX/conf
 cp $compile_buildpack_dir/conf/httpd.conf $OUT_PREFIX/conf/httpd.conf
-cp -ra $OUT_PREFIX $build_dir/../
+cp -ra $OUT_PREFIX $build_dir/
 
 cp $compile_buildpack_bin/boot.sh $build_dir/
 
