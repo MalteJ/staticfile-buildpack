@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e            # fail fast
+set -o pipefail   # don't ignore exit codes when piping output
+set -x          # enable debugging
+
+# Configure directories
+build_dir=$1
+cache_dir=$2
+
+# Version
+apache_version="2.4.10"
+
+compile_buildpack_dir=$(cd $(dirname $0); cd ..; pwd)
+compile_buildpack_bin=$compile_buildpack_dir/bin
+
+# Load some convenience functions like status(), echo(), and indent()
+source $compile_buildpack_dir/bin/common.sh
+
+cd $cache_dir
+OUT_PREFIX=/app/apache2
+mkdir -p $OUT_PREFIX/libs
+
+# ZLIB
+
+DEFAULT_VERSION="1.2.8"
+dep_version=${VERSION:-$DEFAULT_VERSION}
+dep_dirname=zlib-${dep_version}
+dep_archive_name=${dep_dirname}.tar.gz
+dep_url=http://zlib.net/${dep_archive_name}
+
+echo "-----> Building zlib ${dep_version}..."
+
+curl -L ${dep_url} | tar xz
+
+pushd ${dep_dirname}
+./configure --prefix=${OUT_PREFIX}/libs
+make -s -j 9
+make install -s
+popd
+
+# PCRE
+
+DEFAULT_VERSION="8.34"
+dep_version=${VERSION:-$DEFAULT_VERSION}
+dep_dirname=pcre-${dep_version}
+dep_archive_name=${dep_dirname}.tar.gz
+dep_url=ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/${dep_archive_name}
+
+echo "-----> Building PCRE ${dep_version}..."
+
+curl -L ${dep_url} | tar xz
+
+pushd ${dep_dirname}
+./configure --prefix=${OUT_PREFIX}/libs
+make -s -j 9
+make install -s
+popd
+
+
+# APR
+
+wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-1.5.1.tar.gz
+tar xzvf apr-1.5.1.tar.gz
+cd apr-1.5.1
+./configure --prefix=${OUT_PREFIX}/libs
+make
+make install
+cd ..
+
+
+# APR-UTIL
+
+wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-util-1.5.4.tar.gz
+tar xzvf apr-util-1.5.4.tar.gz
+cd apr-util-1.5.4
+./configure --prefix=${OUT_PREFIX}/libs --with-apr=${OUT_PREFIX}/libs
+make
+make install
+cd ..
+
+
+# APACHE
+
+wget http://mirror.arcor-online.net/www.apache.org//httpd/httpd-$apache_version.tar.gz
+tar xzvf httpd-$apache_version.tar.gz
+cd httpd-$apache_version
+./configure \
+    --prefix=${OUT_PREFIX} \
+    --with-z=${OUT_PREFIX}/libs \
+    --with-ssl \
+    --with-mpm=event \
+    --enable-mods-shared=all \
+    --enable-deflate \
+    --with-apr=${OUT_PREFIX}/libs \
+    --with-apr-util=${OUT_PREFIX}/libs \
+    --enable-proxy \
+    --enable-proxy-fcgi \
+    --enable-rewrite \
+    --with-pcre=${OUT_PREFIX}/libs
+#    --enable-layout=GNU \
+#    --with-included-apr \
+make
+make install -s
+cd ..
+
+rm -rf /app/apache2/man
+rm -rf /app/apache2/icons
+rm -rf /app/apache2/htdocs/*
+rm -rf /app/apache2/logs/*
+rm -rf /app/apache2/cgi-bin/*
+
+mkdir -p /app/apache2/conf
+cp $compile_buildpack_dir/conf/httpd.conf /app/apache2/conf/httpd.conf
+cp -ra /app/apache2 $build_dir/
+
+cp $compile_buildpack_bin/boot.sh $build_dir/
+

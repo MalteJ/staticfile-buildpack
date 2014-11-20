@@ -1,0 +1,8 @@
+---
+applications:
+- name: apache-market
+  buildpack: https://github.com/MalteJ/staticfile-crowd_auth-buildpack.git
+  domain: test.cf.hybris.com
+  host: apache-market
+  instances: 1
+  memory: 512M
