@@ -19,7 +19,7 @@ compile_buildpack_bin=$compile_buildpack_dir/bin
 source $compile_buildpack_dir/bin/common.sh
 
 cd $cache_dir
-OUT_PREFIX=/app/apache2
+OUT_PREFIX=/home/vcap/apache2
 mkdir -p $OUT_PREFIX/libs
 
 # ZLIB
@@ -105,15 +105,15 @@ make
 make install -s
 cd ..
 
-rm -rf /app/apache2/man
-rm -rf /app/apache2/icons
-rm -rf /app/apache2/htdocs/*
-rm -rf /app/apache2/logs/*
-rm -rf /app/apache2/cgi-bin/*
+rm -rf $OUT_PREFIX/man
+rm -rf $OUT_PREFIX/icons
+rm -rf $OUT_PREFIX/htdocs/*
+rm -rf $OUT_PREFIX/logs/*
+rm -rf $OUT_PREFIX/cgi-bin/*
 
-mkdir -p /app/apache2/conf
-cp $compile_buildpack_dir/conf/httpd.conf /app/apache2/conf/httpd.conf
-cp -ra /app/apache2 $build_dir/
+mkdir -p $OUT_PREFIX/conf
+cp $compile_buildpack_dir/conf/httpd.conf $OUT_PREFIX/conf/httpd.conf
+cp -ra $OUT_PREFIX $build_dir/
 
 cp $compile_buildpack_bin/boot.sh $build_dir/
 
