@@ -21,6 +21,8 @@ source $compile_buildpack_dir/bin/common.sh
 mkdir -p $cache_dir
 cp -ra . $cache_dir/htdocs
 cd $cache_dir
+
+if [[ ! 1 ]]; then
 OUT_PREFIX=/app/apache2
 mkdir -p $OUT_PREFIX/libs
 
@@ -121,4 +123,10 @@ cp $compile_buildpack_bin/boot.sh $build_dir/
 
 cd $build_dir
 tar zcf $cache_dir/htdocs/apache-httpd-2.4.10.tar.gz apache2
+
+else
+  tar xzf $compile_buildpack_dir/vendor/apache-httpd-${apache_version}.tar.gz
+fi
+
+cd $build_dir
 mv $cache_dir/htdocs $build_dir/apache2/htdocs
