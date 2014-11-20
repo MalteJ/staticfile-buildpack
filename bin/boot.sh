@@ -14,14 +14,13 @@
 
 export APP_ROOT=/app
 
-conf_file=$APP_ROOT/apache2/conf/httpd.conf
 if [ -f $APP_ROOT/apache2/htdocs/httpd.conf ]
 then
-  conf_file=$APP_ROOT/apache2/htdocs/httpd.conf
+  mv $APP_ROOT/apache2/htdocs/httpd.conf $APP_ROOT/apache2/conf/httpd.conf
 fi
 
-mv $conf_file $APP_ROOT/apache2/orig.conf
-erb $APP_ROOT/apache2/orig.conf > $conf_file
+#mv $conf_file $APP_ROOT/apache2/orig.conf
+#erb $APP_ROOT/apache2/orig.conf > $conf_file
 
 #cat $conf_file
 
