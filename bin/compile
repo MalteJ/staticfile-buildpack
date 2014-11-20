@@ -62,7 +62,7 @@ popd
 # APR
 
 wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-1.5.1.tar.gz
-tar xzvf apr-1.5.1.tar.gz
+tar xzf apr-1.5.1.tar.gz
 cd apr-1.5.1
 ./configure --prefix=${OUT_PREFIX}/libs
 make
@@ -73,7 +73,7 @@ cd ..
 # APR-UTIL
 
 wget http://ftp.halifax.rwth-aachen.de/apache//apr/apr-util-1.5.4.tar.gz
-tar xzvf apr-util-1.5.4.tar.gz
+tar xzf apr-util-1.5.4.tar.gz
 cd apr-util-1.5.4
 ./configure --prefix=${OUT_PREFIX}/libs --with-apr=${OUT_PREFIX}/libs
 make
@@ -84,7 +84,7 @@ cd ..
 # APACHE
 
 wget http://mirror.arcor-online.net/www.apache.org//httpd/httpd-$apache_version.tar.gz
-tar xzvf httpd-$apache_version.tar.gz
+tar xzf httpd-$apache_version.tar.gz
 cd httpd-$apache_version
 ./configure \
     --prefix=${OUT_PREFIX} \
