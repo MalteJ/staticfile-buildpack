@@ -125,6 +125,7 @@ cd $build_dir
 tar zcf $cache_dir/htdocs/apache-httpd-2.4.10.tar.gz apache2
 
 else
+  cd $build_dir
   tar xzf $compile_buildpack_dir/vendor/apache-httpd-${apache_version}.tar.gz
 fi
 
