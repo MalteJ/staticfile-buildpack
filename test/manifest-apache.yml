@@ -5,7 +5,7 @@ applications:
   domain: test.cf.hybris.com
   host: apache-market
   instances: 1
-  memory: 512M
+  memory: 128M
   timeout: 180
   env:
     SERVER_NAME: market.yaas.io

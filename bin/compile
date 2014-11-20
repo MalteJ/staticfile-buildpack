@@ -119,7 +119,6 @@ mkdir -p $OUT_PREFIX/conf
 cp $compile_buildpack_dir/conf/httpd.conf $OUT_PREFIX/conf/httpd.conf
 cp -ra $OUT_PREFIX $build_dir/
 
-cp $compile_buildpack_bin/boot.sh $build_dir/
 
 cd $build_dir
 tar zcf $cache_dir/htdocs/apache-httpd-2.4.10.tar.gz apache2
@@ -129,5 +128,6 @@ else
   tar xzf $compile_buildpack_dir/vendor/apache-httpd-${apache_version}.tar.gz
 fi
 
+cp $compile_buildpack_bin/boot.sh $build_dir/
 cd $build_dir
 mv $cache_dir/htdocs $build_dir/apache2/htdocs

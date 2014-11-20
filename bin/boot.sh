@@ -11,7 +11,7 @@
 # either express or implied. See the License for the specific language governing permissions
 # and  limitations under the License.
 # ------------------------------------------------------------------------------------------------
-
+set -x
 export APP_ROOT=/app
 
 if [ -f $APP_ROOT/apache2/htdocs/httpd.conf ]
