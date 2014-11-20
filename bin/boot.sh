@@ -15,9 +15,9 @@
 export APP_ROOT=/app
 
 conf_file=$APP_ROOT/apache2/conf/httpd.conf
-if [ -f $APP_ROOT/htdocs/httpd.conf ]
+if [ -f $APP_ROOT/apache2/htdocs/httpd.conf ]
 then
-  conf_file=$APP_ROOT/htdocs/httpd.conf
+  conf_file=$APP_ROOT/apache2/htdocs/httpd.conf
 fi
 
 mv $conf_file $APP_ROOT/apache2/orig.conf
