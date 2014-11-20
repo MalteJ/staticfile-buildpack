@@ -35,7 +35,7 @@ touch $APP_ROOT/apache2/logs/error_log
 echo "STARTING APACHE..."
 sleep 1
 $APP_ROOT/apache2/bin/httpd -DFOREGROUND -f $APP_ROOT/apache2/conf/httpd.conf
-
+echo $?
 echo "APACHE STOPPED!!!"
 sleep 10
 
