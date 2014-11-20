@@ -18,6 +18,7 @@ compile_buildpack_bin=$compile_buildpack_dir/bin
 # Load some convenience functions like status(), echo(), and indent()
 source $compile_buildpack_dir/bin/common.sh
 
+cd $build_dir
 mkdir -p $cache_dir
 cp -ra . $cache_dir/htdocs
 cd $cache_dir
