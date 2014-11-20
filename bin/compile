@@ -9,6 +9,8 @@ set -x          # enable debugging
 build_dir=$1
 cache_dir=$2
 
+BUILD_APACHE=TRUE
+
 # Version
 apache_version="2.4.10"
 
@@ -33,7 +35,7 @@ root_dir=${root_dir:-.}
 cp -ra $root_dir $cache_dir/htdocs
 cd $cache_dir
 
-if [[ ! 1 ]]; then
+if [[ $BUILD_APACHE == "TRUE" ]]; then
 OUT_PREFIX=/app/apache2
 mkdir -p $OUT_PREFIX/libs
 
@@ -141,4 +143,5 @@ fi
 
 cp $compile_buildpack_bin/boot.sh $build_dir/
 cd $build_dir
+rm -rf $build_dir/apache2/htdocs
 mv $cache_dir/htdocs $build_dir/apache2/htdocs
