@@ -30,6 +30,7 @@ erb $APP_ROOT/apache2/orig.conf > $conf_file
 
 touch $APP_ROOT/apache2/logs/access_log
 touch $APP_ROOT/apache2/logs/error_log
+chmod 777 $APP_ROOT/apache2/logs/*
 
 (tail -f -n 0 $APP_ROOT/apache2/logs/*log &)
 echo "STARTING APACHE..."
