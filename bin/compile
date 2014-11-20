@@ -9,7 +9,7 @@ set -x          # enable debugging
 build_dir=$1
 cache_dir=$2
 
-BUILD_APACHE=TRUE
+BUILD_APACHE=FALSE
 
 # Version
 apache_version="2.4.10"
