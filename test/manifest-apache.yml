@@ -6,3 +6,5 @@ applications:
   host: apache-market
   instances: 1
   memory: 512M
+  env:
+    SERVER_NAME: market.yaas.io
