@@ -119,6 +119,6 @@ cp -ra $OUT_PREFIX $build_dir/
 
 cp $compile_buildpack_bin/boot.sh $build_dir/
 
-mv $cache_dir/htdocs $build_dir/apache2/htdocs
 cd $build_dir
-tar zcf $build_dir/apache2/htdocs/apache-httpd-2.4.10.tar.gz $build_dir/apache2 --exclude build_dir/apache2/htdocs
+tar zcf $cache_dir/htdocs/apache-httpd-2.4.10.tar.gz apache2
+mv $cache_dir/htdocs $build_dir/apache2/htdocs
