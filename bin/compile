@@ -18,6 +18,7 @@ compile_buildpack_bin=$compile_buildpack_dir/bin
 # Load some convenience functions like status(), echo(), and indent()
 source $compile_buildpack_dir/bin/common.sh
 
+mkdir -p $cache_dir
 cd $cache_dir
 OUT_PREFIX=/home/vcap/apache2
 mkdir -p $OUT_PREFIX/libs
