@@ -18,10 +18,8 @@ compile_buildpack_bin=$compile_buildpack_dir/bin
 # Load some convenience functions like status(), echo(), and indent()
 source $compile_buildpack_dir/bin/common.sh
 
-mv $build_dir $cache_dir/proj
-mkdir -p $build_dir
+cd $build_dir
 
-cd $cache_dir/proj
 # Alternate root location (default is root of project) for html/js/css
 # root: dist/
 if [[ "$(grep root: Staticfile)X" != "X" ]]; then
@@ -32,7 +30,7 @@ else
 fi
 root_dir=${root_dir:-.}
 
-mv $root_dir $cache_dir/htdocs
+cp -ra $root_dir $cache_dir/htdocs
 cd $cache_dir
 
 if [[ ! 1 ]]; then
