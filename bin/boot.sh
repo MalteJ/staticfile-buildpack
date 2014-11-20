@@ -34,6 +34,7 @@ chmod 777 $APP_ROOT/apache2/logs/*
 
 (tail -f -n 0 $APP_ROOT/apache2/logs/*log &)
 echo "STARTING APACHE..."
+whoami
 sleep 1
 $APP_ROOT/apache2/bin/httpd -DFOREGROUND -f $APP_ROOT/apache2/conf/httpd.conf
 echo $?
