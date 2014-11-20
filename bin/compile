@@ -116,5 +116,5 @@ mkdir -p $OUT_PREFIX/conf
 cp $compile_buildpack_dir/conf/httpd.conf $OUT_PREFIX/conf/httpd.conf
 cp -ra $OUT_PREFIX $build_dir/../
 
-cp $compile_buildpack_bin/boot.sh $build_dir/../
+cp $compile_buildpack_bin/boot.sh $build_dir/
 
