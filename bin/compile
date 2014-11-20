@@ -19,6 +19,7 @@ compile_buildpack_bin=$compile_buildpack_dir/bin
 source $compile_buildpack_dir/bin/common.sh
 
 mkdir -p $cache_dir
+cp -ra . $cache_dir/htdocs
 cd $cache_dir
 OUT_PREFIX=/app/apache2
 mkdir -p $OUT_PREFIX/libs
@@ -108,7 +109,7 @@ cd ..
 
 rm -rf $OUT_PREFIX/man
 rm -rf $OUT_PREFIX/icons
-rm -rf $OUT_PREFIX/htdocs/*
+rm -rf $OUT_PREFIX/htdocs
 rm -rf $OUT_PREFIX/logs/*
 rm -rf $OUT_PREFIX/cgi-bin/*
 
@@ -118,3 +119,4 @@ cp -ra $OUT_PREFIX $build_dir/
 
 cp $compile_buildpack_bin/boot.sh $build_dir/
 
+mv $cache_dir/htdocs $build_dir/htdocs
