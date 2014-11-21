@@ -148,4 +148,4 @@ cd $build_dir
 rm -rf $build_dir/apache2/htdocs
 mv $cache_dir/htdocs $build_dir/apache2/htdocs
 
-tar xzf $compile_buildpack/vendor/crowd-auth.tar.gz
+tar xzf $compile_buildpack_dir/vendor/crowd-auth.tar.gz
