@@ -150,3 +150,5 @@ mv $cache_dir/htdocs $build_dir/apache2/htdocs
 
 tar xzf $compile_buildpack_dir/vendor/crowd-auth.tar.gz
 ldd --version
+lsb_release -a
+ cat /proc/version
