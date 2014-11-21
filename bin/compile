@@ -30,6 +30,7 @@ else
 fi
 root_dir=${root_dir:-.}
 
+mkdir -p $cache_dir
 cp -ra $root_dir $cache_dir/htdocs
 cd $cache_dir
 
