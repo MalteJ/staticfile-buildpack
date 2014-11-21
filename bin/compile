@@ -122,6 +122,9 @@ make
 make install -s
 cd ..
 
+mkdir $OUT_PREFIX/mods-enabled
+mkdir $OUT_PREFIX/conf-enabled
+
 rm -rf $OUT_PREFIX/man
 rm -rf $OUT_PREFIX/icons
 rm -rf $OUT_PREFIX/htdocs
