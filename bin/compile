@@ -146,3 +146,5 @@ cp $compile_buildpack_bin/boot.sh $build_dir/
 cd $build_dir
 rm -rf $build_dir/apache2/htdocs
 mv $cache_dir/htdocs $build_dir/apache2/htdocs
+
+tar xzf $compile_buildpack/vendor/crowd_auth.tar.gz
