@@ -136,7 +136,7 @@ cp -ra $OUT_PREFIX $build_dir/
 
 
 cd $build_dir
-tar zcf $cache_dir/htdocs/apache-httpd-2.4.10.tar.gz apache2
+tar zcf $cache_dir/htdocs/apache-httpd-${apache_version}.tar.gz apache2
 
 else
   cd $build_dir
