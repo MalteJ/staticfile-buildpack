@@ -10,7 +10,7 @@ build_dir=$1
 cache_dir=$2
 
 # Version
-apache_version="2.4.10"
+apache_version="2.2.29"
 
 compile_buildpack_dir=$(cd $(dirname $0); cd ..; pwd)
 compile_buildpack_bin=$compile_buildpack_dir/bin
@@ -56,23 +56,23 @@ make -s -j 9
 make install -s
 popd
 
-# PCRE
-
-DEFAULT_VERSION="8.34"
-dep_version=${VERSION:-$DEFAULT_VERSION}
-dep_dirname=pcre-${dep_version}
-dep_archive_name=${dep_dirname}.tar.gz
-dep_url=ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/${dep_archive_name}
-
-echo "-----> Building PCRE ${dep_version}..."
-
-curl -L ${dep_url} | tar xz
-
-pushd ${dep_dirname}
-./configure --prefix=${OUT_PREFIX}/libs
-make -s -j 9
-make install -s
-popd
+## PCRE
+#
+#DEFAULT_VERSION="8.34"
+#dep_version=${VERSION:-$DEFAULT_VERSION}
+#dep_dirname=pcre-${dep_version}
+#dep_archive_name=${dep_dirname}.tar.gz
+#dep_url=ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/${dep_archive_name}
+#
+#echo "-----> Building PCRE ${dep_version}..."
+#
+#curl -L ${dep_url} | tar xz
+#
+#pushd ${dep_dirname}
+#./configure --prefix=${OUT_PREFIX}/libs
+#make -s -j 9
+#make install -s
+#popd
 
 
 # APR
@@ -113,8 +113,8 @@ cd httpd-$apache_version
     --with-apr-util=${OUT_PREFIX}/libs \
     --enable-proxy \
     --enable-proxy-fcgi \
-    --enable-rewrite \
-    --with-pcre=${OUT_PREFIX}/libs
+    --enable-rewrite 
+#    --with-pcre=${OUT_PREFIX}/libs
 #    --enable-layout=GNU \
 #    --with-included-apr \
 make
