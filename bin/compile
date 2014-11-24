@@ -131,7 +131,7 @@ rm -rf $OUT_PREFIX/logs/*
 rm -rf $OUT_PREFIX/cgi-bin/*
 
 mkdir -p $OUT_PREFIX/conf
-cp $compile_buildpack_dir/conf/httpd.conf $OUT_PREFIX/conf/httpd.conf
+cp $compile_buildpack_dir/conf/httpd-${apache_version}.conf $OUT_PREFIX/conf/httpd.conf
 cp -ra $OUT_PREFIX $build_dir/
 
 
